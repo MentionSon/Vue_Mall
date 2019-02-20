@@ -76,6 +76,7 @@
       width: 100%; 
       font-size: 18px;
       @include ellipsis();
+      color: #fff;
     }
   }
 </style>

@@ -7,7 +7,7 @@
     <ul class="recommend-list" v-else>
       <li class="recommend-item" v-for="(item, index) in recommends" :key="index">
         <router-link 
-          :to="{name: 'home-product', params: {id: item.baseinfo.itemId}}" 
+          :to="{name: 'home-product', params: {id: item.baseinfo.itemId, picInfo: [item.baseinfo.picUrl,item.baseinfo.picUrlFromIc,item.baseinfo.picUrlM,item.baseinfo.picUrlNew], priceInfo: {curP: item.price.actPrice, sold: item.remind.soldCount}}}" 
           class="recommend-link">
           <p class="recommend-pic"><img v-lazy="item.baseinfo.picUrl" alt="" class="recommend-img"></p>
           <p class="recommend-name">{{item.name.shortName}}</p>
@@ -58,6 +58,7 @@
               this.recommends = this.recommends.concat(data.itemList);
               this.$emit('loaded', this.recommends);
               resolve(data);
+              console.log(data.itemList[0].baseinfo);
             }
           });
         });
